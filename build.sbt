@@ -10,6 +10,7 @@ lazy val webMonaco = (project in file("."))
     Compile / npmDependencies ++= Seq(
       "monaco-editor" -> "0.22.3"
     ),
+    scalacOptions += "-Ymacro-annotations",
     scalacOptions += s"-Wconf:cat=w-flag-dead-code&src=${(sourceDirectory in Compile).value}/scala/scalablytyped/" +
       s".*:is,cat=unused&src=${(sourceDirectory in Compile).value}/scala/scalablytyped/.*:is",
     stFlavour := Flavour.Japgolly,
