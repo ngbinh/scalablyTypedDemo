@@ -8,14 +8,14 @@ lazy val webMonaco = (project in file("."))
       "com.olvind" %%% "scalablytyped-runtime" % "2.4.0"
     ),
     Compile / npmDependencies ++= Seq(
-      "monaco-editor" -> "0.22.3"
+      "echarts" -> "5.0.2",
+      "@types/echarts" -> "4.9.3"
     ),
-    scalacOptions += "-Ymacro-annotations",
     scalacOptions += s"-Wconf:cat=w-flag-dead-code&src=${(sourceDirectory in Compile).value}/scala/scalablytyped/" +
       s".*:is,cat=unused&src=${(sourceDirectory in Compile).value}/scala/scalablytyped/.*:is",
     stFlavour := Flavour.Japgolly,
+    stMinimize := Selection.AllExcept("echarts"),
     stIgnore ++= List("react", "react-dom"),
-    stMinimize := Selection.AllExcept("monaco-editor"),
     stOutputPackage := "anduin.facades"
   )
 
